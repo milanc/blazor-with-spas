@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorApp.Client\BlazorApp.Client.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.2" />
+  </ItemGroup>
+
+  <Target Name="CopyFiles" BeforeTargets="Build">
+  <ItemGroup>
+            <!-- Because this ItemGroup is inside the target, this will enumerate
+                 all files just before calling Copy. If the ItemGroup were outside
+                 the target , it would enumerate the files during evaluation, before
+                 the build starts, which may miss files created during the build. -->
+            <SPA1Files Include="../../dist/apps/spa1/browser/*.*"/>
+            <SPA2Files Include="../../dist/apps/spa2/browser/*.*"/>
+        </ItemGroup>
+        <Copy
+            SourceFiles="@(SPA1Files)"
+            DestinationFolder="./wwwroot/spa1"
+        />
+        <Copy
+            SourceFiles="@(SPA2Files)"
+            DestinationFolder="./wwwroot/spa2"
+        />
+    </Target>
+</Project>

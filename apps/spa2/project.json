@@ -10,6 +10,8 @@
       "executor": "@angular-devkit/build-angular:application",
       "outputs": ["{options.outputPath}"],
       "options": {
+        "baseHref": "/spa2",
+        "deployUrl": "/spa2",
         "outputPath": "dist/apps/spa2",
         "index": "apps/spa2/src/index.html",
         "browser": "apps/spa2/src/main.ts",
