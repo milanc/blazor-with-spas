@@ -20,6 +20,16 @@ else
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
 }
 
+app.Use(async (c, n) =>
+{
+    if(c.Request.Path.StartsWithSegments("/spa1")){
+        c.Request.Path = "/spa1/index.html";
+    }
+    await n();
+});
+
+
+
 app.UseStaticFiles();
 app.UseAntiforgery();
 
