@@ -20,15 +20,25 @@ else
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
 }
 
-app.Use(async (c, n) =>
+app.Use((c, n) =>
+        {
+            if (c.Request.Path.StartsWithSegments("/spa1")
+            && !c.Request.Path.Value.Contains("."))
+            {
+                c.Request.Path = "/spa1/index.html";
+            }
+            return n();
+        });
+        
+app.Use((c, n) =>
 {
-    if(c.Request.Path.StartsWithSegments("/spa1")){
-        c.Request.Path = "/spa1/index.html";
-    }
-    await n();
+    if (c.Request.Path.StartsWithSegments("/spa2")
+            && !c.Request.Path.Value.Contains("."))
+            {
+                c.Request.Path = "/spa2/index.html";
+            }
+    return n();
 });
-
-
 
 app.UseStaticFiles();
 app.UseAntiforgery();
