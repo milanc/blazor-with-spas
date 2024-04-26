@@ -1,10 +1,15 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-nx-welcome',
   standalone: true,
   imports: [CommonModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
     <!--
      * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -426,6 +431,7 @@ import { CommonModule } from '@angular/common';
         }
       }
     </style>
+    <bl-shared-component></bl-shared-component>
     <div class="wrapper">
       <div class="container">
         <!--  WELCOME  -->
