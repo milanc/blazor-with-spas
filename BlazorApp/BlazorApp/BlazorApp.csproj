@@ -18,7 +18,7 @@
             <SPA2Files Include="../../dist/apps/spa2/browser/*.*"/>
         </ItemGroup>
 
-        <Exec Condition="!Exists('$(node_modules)')" Command="npm install"/>
+        <Exec Command="npm install"/>
 
         <Exec Command="npx nx run-many --target=build --all=true "/>
 
