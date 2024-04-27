@@ -12,14 +12,12 @@
   </ItemGroup>
 
   <Target Name="BuildSpa" BeforeTargets="Build">
+    <Exec Command="npm install" />
+    <Exec Command="npx nx run-many --target=build --all=true "/>
     <ItemGroup>
       <SPA1Files Include="../../dist/apps/spa1/browser/*.*"/>
       <SPA2Files Include="../../dist/apps/spa2/browser/*.*"/>
     </ItemGroup>
-    
-    <Exec Command="npm install"/>
-    <Exec Command="npx nx run-many --target=build --all=true "/>
-    
     <Copy
       SourceFiles="@(SPA1Files)"
       DestinationFolder="./wwwroot/spa1"
