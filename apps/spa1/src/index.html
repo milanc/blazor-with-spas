@@ -3,13 +3,21 @@
   <head>
     <meta charset="utf-8" />
     <title>spa1</title>
+    <!-- because there are 2 spa they will be served from different paths and base href will be /spa1 -->
+    <!-- base href, in the generated index.html will be /spa1 -->
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <script>
-      document.blazorBase = "/";
+      document.blazorBase = document.location.origin + "/";
     </script>
-    <script src="/blazor.webassembly-spa.js"></script>
+    <!-- with the original blazor script custom element is not rendered -->
+    <!-- reason is that the other framework files are failing to load because base href is /spa1 -->
+    <script src="/_framework/blazor.webassembly.js"></script>
+
+    <!-- uncomment this modified script to make it work -->
+    <!-- it uses (document.blazorBase || document.baseURI) instead of just document.baseURI -->
+    <!-- <script src="/blazor.webassembly-spa.js"></script> -->
   </head>
   <body>
     <app-root></app-root>
