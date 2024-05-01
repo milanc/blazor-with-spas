@@ -45,3 +45,5 @@ Thumbs.db
 **/obj/
 .mono
 **/wwwroot/spa*
+.cr/
+.vs/
