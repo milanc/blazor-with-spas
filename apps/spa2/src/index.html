@@ -1,25 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>spa2</title>
-    <!-- because there are 2 spa they will be served from different paths and base href will be /spa1 -->
-    <!-- base href, in the generated index.html will be /spa2 -->
-    <base href="/" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+<head>
+  <meta charset="utf-8" />
+  <title>spa2</title>
+  <!-- because there are 2 spas they will be served from different paths and the base href will be /spa2 -->
+  <!-- base href, in the generated index.html will be /spa2 -->
+  <base href="/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+  <!-- with the original blazor script custom element is not rendered -->
+  <!-- reason is that the other framework files are failing to load because base href is /spa2 -->
+  <script src="/_framework/blazor.webassembly.js"></script>
+
+  <!-- comment the script tag above and uncomment this modified script tags to make it work -->
+  <!-- it uses (document.blazorBase || document.baseURI) instead of just document.baseURI -->
+  <!--    
     <script>
       document.blazorBase = document.location.origin + "/";
     </script>
-    <!-- with the original blazor script custom element is not rendered -->
-    <!-- reason is that the other framework files are failing to load because base href is /spa2 -->
-    <script src="/_framework/blazor.webassembly.js"></script>
+    <script src="/blazor.webassembly-spa.js"></script> 
+  -->
+</head>
 
-    <!-- uncomment this modified script to make it work -->
-    <!-- it uses (document.blazorBase || document.baseURI) instead of just document.baseURI -->
-    <!-- <script src="/blazor.webassembly-spa.js"></script> -->
-  </head>
-  <body>
-    <app-root></app-root>
-  </body>
+<body>
+  <app-root></app-root>
+</body>
+
 </html>
