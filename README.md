@@ -17,7 +17,7 @@ Once the blazor is started, it's code will attempt to load rest of the required 
 ## Solutions
 ### Host Blazor App With SPAs
 We could publish Blazor App and host it on the each SPA server.
-This means that we have to deploy the Blazor App on the multiple servers and do that when ever Blazor App is modified.
+This means that we have to copy Blazor app to both SPA subfolders or maybe even to deploy on the multiple servers when ever Blazor App is modified.
 
 ### Url Rewrites
 Next possible solution would be to do url rewrites.
